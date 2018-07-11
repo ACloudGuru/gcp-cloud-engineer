@@ -9,7 +9,7 @@ echo
 echo ==============================================================================
 echo Updating `pwd` ...
 echo ==============================================================================
-echo
+#echo
 
 #echo ------------------------------------------------------------------------------
 #echo Making sure git is configured...
@@ -22,12 +22,12 @@ git_name=`git config --get user.name` || true
 
 if [ -z "$git_email" ]
 then
-  echo Git user.email unset.  Setting to "not@yet.com"
+  echo Git user.email unset.  Setting to \"not@yet.com\"
   git config user.email "not@yet.com"
 fi
 if [ -z "$git_name" ]
 then
-  echo Git user.name unset.  Setting to "Someone"
+  echo Git user.name unset.  Setting to \"Someone\"
   git config user.name "Someone"
 fi
 echo
