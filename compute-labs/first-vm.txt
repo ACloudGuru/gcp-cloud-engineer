@@ -1,0 +1,19 @@
+gcloud config get-value project
+
+gcloud compute instances list
+
+gcloud services list
+gcloud services list -h
+gcloud services list --enabled
+gcloud services list --available
+
+gcloud services list --available | grep compute
+gcloud services -h
+
+gcloud compute instances list
+
+gcloud services list
+
+gcloud compute instances create myvm
+gcloud compute instances delete myvm
+gcloud compute instances list
