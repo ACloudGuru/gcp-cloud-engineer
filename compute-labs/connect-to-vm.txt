@@ -1,0 +1,96 @@
+# Check the elected project
+gcloud config list
+
+# Show any .ssh folder
+pwd
+ls
+ls -a .ssh
+
+# Get our bearings in Cloud Shell
+whoami
+hostname
+curl api.ipify.org
+
+# Check that we have nothing running
+gcloud compute instances list
+
+# Don't create a default VM
+# Cancel: gcloud compute instances create myhappyvm
+
+# Look at how to set the machine type
+gcloud compute instances create myhappyvm -h
+gcloud compute instances create myhappyvm --help
+gcloud compute machine-types list
+
+# See how to filter
+gcloud topic filters
+
+# Show some free-tier-eligible options
+gcloud compute machine-types list --filter="NAME:f1-micro"
+gcloud compute machine-types list --filter="NAME:f1-micro AND ZONE~us-west"
+
+# Set our defaults to Los Angeles
+gcloud config set compute/zone us-west2-b
+gcloud config set compute/region us-west2
+
+# Start our instance
+gcloud compute instances create --machine-type=f1-micro myhappyvm
+ping -c 3 myhappyvm
+ping -c 3 internalipaddress
+ping -c 3 externalipaddress
+
+# Connect to the VM
+ssh externalipaddress
+gcloud compute ssh myhappyvm
+
+# Get our bearings -- Skip?
+whoami
+hostname
+curl api.ipify.org
+
+# Get back to Cloud Shell
+exit
+curl api.ipify.org
+
+# Look at the Cloud Shell .ssh files
+cd .ssh
+ls
+cat google_compute_engine.pub
+head -n 10 google_compute_engine
+
+# Log back onto the VM
+gcloud compute ssh myhappyvm
+
+# See that our key is authorized
+cd .ssh
+ls
+cat authorized_keys
+cd ..
+
+# Check out the metadata
+curl metadata.google.internal/computeMetadata/v1/
+curl -H "Metadata-Flavor: Google" metadata.google.internal/computeMetadata/v1/
+curl -H "Metadata-Flavor: Google" metadata.google.internal/computeMetadata/v1/project/
+curl -H "Metadata-Flavor: Google" metadata.google.internal/computeMetadata/v1/project/project-id
+curl -H "Metadata-Flavor: Google" metadata.google.internal/computeMetadata/v1/project/attributes/
+curl -H "Metadata-Flavor: Google" metadata.google.internal/computeMetadata/v1/project/attributes/ssh-keys
+
+# Look at some instance metadata
+curl -H "Metadata-Flavor: Google" metadata.google.internal/computeMetadata/v1/instance/
+curl -H "Metadata-Flavor: Google" metadata.google.internal/computeMetadata/v1/instance/name
+curl -H "Metadata-Flavor: Google" metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/
+curl -H "Metadata-Flavor: Google" metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/email
+
+# See what gcloud knows
+gcloud config list
+
+# Look at our buckets
+gsutil ls
+gsutil ls gs://storage-lab-cli/
+
+# Attempt to delete the VM from within the VM
+gcloud compute instances delete myhappyvm
+
+# Exit back to Cloud Shell and actually delete the VM
+exit
+gcloud compute instances delete myhappyvm
