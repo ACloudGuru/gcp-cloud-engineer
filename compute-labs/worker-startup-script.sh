@@ -10,7 +10,7 @@ set -x
 #
 # Make sure installed packages are up to date with all security patches.
 #
-apt-get update
+apt-get update && apt-get upgrade
 
 
 #
