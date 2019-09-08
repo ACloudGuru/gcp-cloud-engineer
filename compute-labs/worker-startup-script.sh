@@ -5,7 +5,7 @@
 # GCE startup script output shows up in "/var/log/syslog" .
 #
 set -x
-
+export DEBIAN_FRONTEND=noninteractive
 
 #
 # Make sure installed packages are up to date with all security patches.
