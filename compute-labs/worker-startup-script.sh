@@ -5,12 +5,19 @@
 # GCE startup script output shows up in "/var/log/syslog" .
 #
 set -x
+
+
+#
+# Stop apt-get calls from trying to bring up UI.
+#
 export DEBIAN_FRONTEND=noninteractive
+
 
 #
 # Make sure installed packages are up to date with all security patches.
 #
-apt-get update && apt-get upgrade -y
+apt-get -yq update
+apt-get -yq upgrade
 
 
 #
@@ -24,7 +31,7 @@ bash install-logging-agent.sh
 #
 # Install and run the "stress" tool to max the CPU load for a while.
 #
-apt-get install stress
+apt-get -yq install stress
 stress -c 8 -t 120
 
 
