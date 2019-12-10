@@ -50,4 +50,4 @@ echo "Phew!  Work completed at $(date)" >"${worker_log_file}"
 
 # And we copy that file to the bucket specified in the metadata.
 echo "Copying the log file to the bucket..."
-gsutil cp "${worker_log_file}" "${worker_log_bucket}"
+gsutil cp "${worker_log_file}" "gs://${worker_log_bucket}/"
