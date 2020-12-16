@@ -12,6 +12,9 @@ set -x
 #
 export DEBIAN_FRONTEND=noninteractive
 
+# Disable man-db updates triggered by package updates or installation,
+# which can take a long time on small instances.
+[[ -e /var/lib/man-db/auto-update ]] && rm -f /var/lib/man-db/auto-update 
 
 #
 # Make sure installed packages are up to date with all security patches.
